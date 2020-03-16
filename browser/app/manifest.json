@@ -15,6 +15,13 @@
     "http://teams.microsoft.com/*",
     "https://teams.microsoft.com/*"
   ],
+  "options_ui": {
+    "page": "popup.html"
+  },
+  "browser_action": {
+    "default_title": "Refined Microsoft Teams",
+    "default_popup": "popup.html"
+  },
   "content_scripts": [{
     "matches": [
       "http://teams.microsoft.com/*",
@@ -22,16 +29,25 @@
     ],
     "js": [
       "lib/jquery-3.4.1.min.js",
-      "scripts/injector.js"
+      "scripts/injector.js",
+      "scripts/popup.js"
     ],
     "css": [
       "styles/2-columns.css",
-      "styles/bulk-add-team-members.css"
+      "styles/bulk-add-team-members.css",
+      "styles/multitenant-panel.css"
     ],
     "run_at": "document_end",
     "all_frames": false
   }],
+  "background": {
+    "scripts": [
+      "scripts/background.js"
+    ],
+    "persistent": true
+  },
   "web_accessible_resources": [
+    "scripts/multitenant-panel.js",
     "scripts/bulk-add-team-members.js"
   ]
 }
