@@ -31,7 +31,7 @@ function onSubmitRefinedBulkAddTeamMembersForm() {
 }
 
 function addMsg(msg) {
-  $('#refined-bulk-add-team-members-form .msgs').prepend("<p>" + msg + "</p>");
+  $('#refined-bulk-add-team-members-form .msgs').prepend('<p>' + msg + '</p>');
 }
 
 function addMembersToTeam(emails) {
@@ -45,7 +45,7 @@ function addMembersToTeam(emails) {
       .then((res) => {
         if (!!res && !!res.results && res.results.length > 0)
           return res.results[0].mri;
-        addMsg("User not found: " + email);
+        addMsg('User not found: ' + email);
         return null;
       })
       .catch((err) => null);
@@ -64,10 +64,10 @@ function addMembersToTeam(emails) {
     .then((res) => {
       if (res.addedMembers == null)
         res.addedMembers == [];
-      addMsg("Added " + res.addedMembers.length + " users.");
+      addMsg('Added ' + res.addedMembers.length + ' users.');
     })
     .catch((err) => {
-      addMsg("Error: " + err);
+      addMsg('Error: ' + err);
     });
 }
 
@@ -75,7 +75,7 @@ function addMembersToTeam(emails) {
 function getMethods(obj) {
   var res = [];
   for (var m in obj) {
-    if (typeof obj[m] == "function") {
+    if (typeof obj[m] == 'function') {
       res.push(m)
     }
   }
