@@ -131,8 +131,8 @@ gulp.task('watch', gulp.series('lint', 'babel', () => {
     'app/_locales/**/*.json'
   ]).on('change', $.livereload.reload);
 
-  gulp.watch('app/scripts.babel/**/*.js', ['lint', 'babel']);
-  gulp.watch('bower.json', ['wiredep']);
+  gulp.watch('app/scripts.babel/**/*.js', gulp.parallel('lint', 'babel'));
+  gulp.watch('bower.json', gulp.parallel('wiredep'));
 }));
 
 gulp.task('size', () => {
