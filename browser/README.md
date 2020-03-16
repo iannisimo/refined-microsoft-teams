@@ -16,6 +16,10 @@ Need more information about Chrome Extension? Please visit [Google Chrome Extens
 
 ## Contribute
 
+## Hacking guide
+
+[Here.](../HACKING-GUIDE.md)
+
 ### Build
 
 Requires node <= 10.
