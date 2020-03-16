@@ -42,6 +42,8 @@ gulp package
 
 ### Release
 
+Increase version into manifest.json.
+
 ```
 rm -rf dist package
 rm -f refined-microsoft-teams.zip
