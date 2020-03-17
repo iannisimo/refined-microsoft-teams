@@ -1,16 +1,18 @@
 const twoColumnsCheckbox = document.getElementById('2-columns-enabled');
+const submitBtn = document.getElementById('submit');
 
 function onSave() {
   const enabled = twoColumnsCheckbox.checked;
   localStorage.setItem('2-columns-enabled', enabled ? 'yes' : 'no');
 }
 
-document.getElementById('submit').addEventListener('click', (event) => {
-  event.stopPropagation();
-  event.preventDefault();
+if (!!submitBtn)
+  submitBtn.addEventListener('click', (event) => {
+    event.stopPropagation();
+    event.preventDefault();
 
-  onSave();
-});
+    onSave();
+  });
 
 // default values
 if (localStorage.getItem('2-columns-enabled') != 'no')
