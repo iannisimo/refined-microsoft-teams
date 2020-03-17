@@ -13,6 +13,7 @@ gulp.task('extras', () => {
   return gulp.src([
     'app/*.*',
     'app/_locales/**',
+    'app/styles/**',
     '!app/scripts.babel',
     // '!app/*.json',
     '!app/*.html',
@@ -71,11 +72,11 @@ gulp.task('html', () => {
       minifyJS: true,
       removeComments: true
     })))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('./dist'));
 });
 
 gulp.task('chromeManifest', () => {
-  return gulp.src('app/manifest.json')
+  return gulp.src('./app/manifest.json')
     .pipe($.chromeManifest({
       buildnumber: true,
       background: {
@@ -91,7 +92,7 @@ gulp.task('chromeManifest', () => {
     .pipe($.if('*.js', $.sourcemaps.init()))
     .pipe($.if('*.js', $.uglify()))
     .pipe($.if('*.js', $.sourcemaps.write('.')))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('../dist'));
 });
 
 gulp.task('webAccessibleResource', function () {
@@ -105,8 +106,8 @@ gulp.task('webAccessibleResource', function () {
     })))
     .pipe($.if('*.js', $.sourcemaps.init()))
     .pipe($.if('*.js', $.uglify()))
-    .pipe($.if('*.js', $.sourcemaps.write()))
-    .pipe(gulp.dest('dist/scripts'));
+    .pipe($.if('*.js', $.sourcemaps.write('.')))
+    .pipe(gulp.dest('./dist/scripts'));
 });
 
 gulp.task('babel', () => {
@@ -152,14 +153,14 @@ gulp.task('wiredep', () => {
 
 gulp.task('package', function () {
   var manifest = require('./dist/manifest.json');
-  return gulp.src('dist/**')
+  return gulp.src('./dist/**')
     .pipe($.zip('refined-microsoft-teams-' + manifest.version + '.zip'))
     .pipe(gulp.dest('package'));
 });
 
 gulp.task('build', (cb) => {
   runSequence(
-    'lint', 'babel', 'chromeManifest', 'webAccessibleResource',
+    'lint', 'babel', 'chromeManifest',
     ['html', 'images', 'extras'],
     'size', cb);
 });

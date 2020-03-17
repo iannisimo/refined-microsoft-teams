@@ -52,6 +52,8 @@ gulp build
 gulp package
 ```
 
+Upload to Firefix Addon first, in order to pass check-list.
+
 ## License
 
 [BSD license](http://opensource.org/licenses/bsd-license.php)
