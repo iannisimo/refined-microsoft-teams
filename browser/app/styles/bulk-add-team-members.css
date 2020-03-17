@@ -21,3 +21,9 @@
 #refined-bulk-add-team-members-form .msgs p {
   margin: 0;
 }
+
+.ts-modal-dialog.ts-add-members-dialog .ngdialog-content .ts-add-members {
+  min-height: 29.8rem !important;
+  max-height: 40rem !important;
+  height: auto !important;
+}

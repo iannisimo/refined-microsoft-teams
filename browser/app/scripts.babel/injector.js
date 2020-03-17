@@ -1,6 +1,6 @@
 const crossPlatformBrowser = window.browser || window.msBrowser || window.chrome || browser || msBrowser || chrome;
 
-crossPlatformBrowser.extension.sendMessage({
+crossPlatformBrowser.runtime.sendMessage({
   type: 'getSettings',
 }, function (settings) {
   if (settings['2-columns-enabled'] != 'no')
