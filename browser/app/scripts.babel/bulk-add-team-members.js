@@ -87,6 +87,8 @@ function addMembersToTeam(emails) {
 
   const currentTeam = channelService.getCurrentTeamAndChannel().team;
 
+  addMsg('Please wait...');
+
   const getMembers = emails.map((email, i) => {
     return delay(i * 100)
       .then(() => isEmailPartOfTenant(email))
