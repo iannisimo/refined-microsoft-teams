@@ -4,7 +4,7 @@ crossPlatformBrowser.runtime.sendMessage({
   type: 'getSettings',
 }, function (settings) {
   if (settings['2-columns-enabled'] != 'no')
-    $('body').addClass('refined-microsoft-teams-2-columns')
+    document.querySelector('body').classList.add('refined-microsoft-teams-2-columns')
 });
 
 function loadJS(path) {

@@ -2,9 +2,9 @@ const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 // add box for copy-pasting user list
 setInterval(() => {
-  if ($('.ts-add-members-header').length == 0)
+  if (document.querySelectorAll('.ts-add-members-header').length == 0)
     return;
-  if ($('#refined-bulk-add-team-members-form').length != 0)
+  if (document.querySelectorAll('#refined-bulk-add-team-members-form').length != 0)
     return;
 
   addFormBulkAddTeamMembers();
@@ -15,34 +15,47 @@ function guestIsAllowed() {
   return guestAccessSettingsService.isGuestAccessEnabled();
 }
 
+function insertBefore(el, referenceNode) {
+  referenceNode.parentNode.insertBefore(el, referenceNode);
+}
+
+function insertAfter(el, referenceNode) {
+  referenceNode.parentNode.insertBefore(el, referenceNode.nextSibling);
+}
+
 function addFormBulkAddTeamMembers() {
   const guestInvitationMessage = guestIsAllowed() ? '<p>You\'re not allowed to invite guests</p>' : ''
 
-  const html = `
-  <div id="refined-bulk-add-team-members-form">` + guestInvitationMessage + `
+  const html = document.createElement('div');
+  html.id = 'refined-bulk-add-team-members-form';
+  html.innerHTML = guestInvitationMessage + `
   <textarea placeholder="alice@acme.com ; bob@acme.com ;"></textarea>
   <input class="ts-btn ts-btn-fluent ts-btn-fluent-primary" type="submit" value="Bulk import">
   <small>Bulk import provided by browser extension: "Refined Microsoft Teams"</small>
   <div class="msgs"></div>
-  </div>
   `;
-  $(html).insertAfter('.ts-add-members-header');
-  $('#refined-bulk-add-team-members-form input').click(onSubmitRefinedBulkAddTeamMembersForm);
+  // $(html).insertAfter('.ts-add-members-header');
+  // $('#refined-bulk-add-team-members-form input').click(onSubmitRefinedBulkAddTeamMembersForm);
+  insertAfter(html, document.querySelector('.ts-add-members-header'));
+  document.querySelector('#refined-bulk-add-team-members-form input').addEventListener('click', onSubmitRefinedBulkAddTeamMembersForm);
 }
 
 function onSubmitRefinedBulkAddTeamMembersForm() {
-  const value = $('#refined-bulk-add-team-members-form textarea').val();
+  const value = document.querySelector('#refined-bulk-add-team-members-form textarea').value;
   const emails = value
     .replace('\n', ';')
     .split(';')
     .map((email) => email.trim())
     .filter((email) => email.length > 0);
-  $('#refined-bulk-add-team-members-form textarea').val('');
+  document.querySelector('#refined-bulk-add-team-members-form textarea').value = '';
   addMembersToTeam(emails);
 }
 
 function addMsg(msg) {
-  $('#refined-bulk-add-team-members-form .msgs').prepend('<p>' + msg + '</p>');
+  // $('#refined-bulk-add-team-members-form .msgs').prepend('<p>' + msg + '</p>');
+  const p = document.createElement('p');
+  p.innerHTML = msg;
+  insertBefore(p, document.querySelector('#refined-bulk-add-team-members-form .msgs'));
 }
 
 function getMemberFromTenant(email) {

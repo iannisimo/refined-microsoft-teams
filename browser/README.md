@@ -52,7 +52,7 @@ gulp build
 gulp package
 ```
 
-Upload to Firefix Addon first, in order to pass check-list.
+Upload to Firefox Addon first, in order to pass check-list.
 
 ## License
 
