@@ -16,6 +16,10 @@ Need more information about Chrome Extension? Please visit [Google Chrome Extens
 
 ## Contribute
 
+The browser extension is open source and contributions from community (you!) are welcome.
+
+Please, don't check code quality 😅 #dirty
+
 ## Hacking guide
 
 [Here.](../HACKING-GUIDE.md)
