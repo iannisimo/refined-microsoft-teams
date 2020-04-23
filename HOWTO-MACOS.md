@@ -8,9 +8,9 @@
 2- Unpack app:
 
 ```
-cd /Applications/Microsoft Teams.app/Contents/Resources/
+cd /Applications/Microsoft\ Teams.app/Contents/Resources/
 sudo asar extract app.asar app
-mv app.asar app.asar.bak
+sudo mv app.asar app.asar.bak
 ```
 
 3- Run app in command-line, with debug mode:
