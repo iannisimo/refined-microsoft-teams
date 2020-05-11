@@ -16,5 +16,5 @@ function loadJS(path) {
   (document.head || document.documentElement).appendChild(s);
 }
 
-loadJS('scripts/multitenant-panel.js');
+// loadJS('scripts/multitenant-panel.js');
 loadJS('scripts/bulk-add-team-members.js');

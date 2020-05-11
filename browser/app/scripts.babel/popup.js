@@ -1,21 +1,18 @@
-const twoColumnsCheckbox = document.getElementById('2-columns-enabled');
-const submitBtn = document.getElementById('submit');
-const msg = document.getElementById('msg');
+document.addEventListener('DOMContentLoaded', () => {
 
-function onSave() {
-  const enabled = twoColumnsCheckbox.checked;
-  localStorage.setItem('2-columns-enabled', enabled ? 'yes' : 'no');
-  msg.innerHTML = 'Please reload Teams page';
-}
+  const twoColumnsCheckbox = document.getElementById('2-columns-enabled');
+  const submitBtn = document.querySelector('button');
+  const msg = document.getElementById('msg');
 
-if (!!submitBtn)
-  submitBtn.addEventListener('click', (event) => {
-    event.stopPropagation();
-    event.preventDefault();
+  function onSave() {
+    const enabled = twoColumnsCheckbox.checked;
+    localStorage.setItem('2-columns-enabled', enabled ? 'yes' : 'no');
+    msg.innerHTML = 'Please reload Teams page';
+  }
 
-    onSave();
-  });
+  if (!!submitBtn)
+    submitBtn.addEventListener('click', onSave);
 
-// default values
-if (localStorage.getItem('2-columns-enabled') != 'no')
-  twoColumnsCheckbox.checked = true;
+  // default values
+  twoColumnsCheckbox.checked = (localStorage.getItem('2-columns-enabled') != 'no') ? 'checked' : '';
+});
