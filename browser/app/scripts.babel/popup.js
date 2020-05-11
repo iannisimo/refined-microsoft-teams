@@ -14,5 +14,5 @@ document.addEventListener('DOMContentLoaded', () => {
     submitBtn.addEventListener('click', onSave);
 
   // default values
-  twoColumnsCheckbox.checked = (localStorage.getItem('2-columns-enabled') != 'no') ? 'checked' : '';
+  twoColumnsCheckbox.checked = localStorage.getItem('2-columns-enabled') != 'no';
 });
